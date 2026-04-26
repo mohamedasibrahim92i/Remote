@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remote Professional | Tech & Language Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --turquoise: #00B4D8;
+      --silver: #B0BEC5;
+      --silver-light: #E2E8F0;
+      --turbo-green: #00FF55;
+      --dark-bg: #0B1120;
+      --card-bg: #111827;
+      --text-light: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      background-image: radial-gradient(circle at 10% 20%, rgba(0, 180, 216, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 255, 85, 0.03) 0%, transparent 40%);
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(11, 17, 32, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(176, 190, 197, 0.2);
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--turquoise); letter-spacing: 1px; }
+    .nav-links a { color: var(--silver); text-decoration: none; margin-left: 25px; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--turbo-green); text-shadow: 0 0 8px rgba(0, 255, 85, 0.5); }
+
+    /* Hero */
+    .hero { display: flex; align-items: center; justify-content: space-between; padding: 90px 0 60px; flex-wrap: wrap; gap: 40px; }    .hero-text { flex: 1; min-width: 300px; }
+    .hero-text h1 {
+      font-size: 3.2rem;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--turquoise), var(--silver-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-text p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 25px; max-width: 600px; }
+    
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: transparent;
+      border: 2px solid var(--turbo-green);
+      color: var(--turbo-green);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.3s;
+      box-shadow: 0 0 12px rgba(0, 255, 85, 0.3);
+    }
+    .cta-btn:hover {
+      background: var(--turbo-green);
+      color: var(--dark-bg);
+      box-shadow: 0 0 25px rgba(0, 255, 85, 0.7);
+    }
+
+    .hero-img { flex: 0 0 auto; text-align: center; }
+    .profile-pic {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--turquoise);
+      box-shadow: 0 0 35px rgba(0, 180, 216, 0.4);
+      background: #1e293b;
+    }
+
+    /* Services */
+    .services { padding: 70px 0; text-align: center; }
+    .section-title { font-size: 2.4rem; margin-bottom: 10px; color: var(--silver-light); }
+    .section-subtitle { color: var(--text-muted); margin-bottom: 50px; font-size: 1.1rem; }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .service-card {      background: var(--card-bg);
+      padding: 28px 22px;
+      border-radius: 12px;
+      border: 1px solid rgba(176, 190, 197, 0.15);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--turquoise);
+      box-shadow: 0 12px 24px rgba(0, 180, 216, 0.15);
+    }
+    .service-icon { font-size: 2rem; color: var(--turbo-green); margin-bottom: 16px; text-shadow: 0 0 10px rgba(0, 255, 85, 0.4); }
+    .service-card h3 { margin-bottom: 10px; color: var(--turquoise); font-weight: 600; }
+    .service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* About / Signature */
+    .about { padding: 70px 0; background: rgba(17, 24, 39, 0.6); }
+    .about-content { max-width: 850px; margin: 0 auto; text-align: center; }
+    .highlight {
+      color: var(--turbo-green);
+      font-weight: 600;
+      text-shadow: 0 0 12px rgba(0, 255, 85, 0.6);
+      animation: pulse 2s infinite alternate;
+    }
+    @keyframes pulse {
+      from { text-shadow: 0 0 8px rgba(0, 255, 85, 0.4); }
+      to { text-shadow: 0 0 16px rgba(0, 255, 85, 0.9); }
+    }
+
+    /* Contact */
+    .contact { padding: 70px 0; text-align: center; }
+    .contact-form { max-width: 550px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+    .contact-form input, .contact-form textarea {
+      padding: 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--silver);
+      color: var(--text-light);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--turbo-green);
+      box-shadow: 0 0 10px rgba(0, 255, 85, 0.3);
+    }
+    .contact-form button {
+      padding: 14px;
+      background: linear-gradient(135deg, var(--turquoise), #008899);      border: none;
+      color: var(--text-light);
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+    .contact-form button:hover {
+      background: linear-gradient(135deg, var(--turbo-green), #00cc44);
+      color: var(--dark-bg);
+      box-shadow: 0 0 20px rgba(0, 255, 85, 0.5);
+    }
+
+    .whatsapp-wrapper { text-align: center; margin-top: 25px; }
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: #25D366;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+    .whatsapp-btn:hover {
+      background: var(--turbo-green);
+      color: var(--dark-bg);
+      box-shadow: 0 0 25px rgba(0, 255, 85, 0.7);
+      transform: translateY(-2px);
+    }
+    .whatsapp-btn i { font-size: 1.3rem; }
+
+    /* Footer */
+    footer { padding: 30px 0; text-align: center; color: var(--text-muted); border-top: 1px solid rgba(176, 190, 197, 0.15); margin-top: 40px; font-size: 0.9rem; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero { flex-direction: column-reverse; text-align: center; padding-top: 60px; }
+      .hero-text { margin-top: 10px; }
+      .profile-pic { width: 240px; height: 240px; }
+      .nav-links { display: none; }
+      .hero-text h1 { font-size: 2.4rem; }
+    }
+  </style></head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Mohamed Ibrahim</div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero container">
+    <div class="hero-text">
+      <h1>Remote Solutions,<br>Delivered Precisely</h1>
+      <p>Full-stack developer, bilingual specialist, and tech consultant empowering businesses globally. I turn complex workflows into streamlined, scalable digital solutions.</p>
+      <a href="#contact" class="cta-btn">Start a Project</a>
+    </div>
+    <div class="hero-img">
+      <!-- Upload your photo to the SAME repo as index.html (root folder) -->
+      <!-- Replace "profile.jpg" with your EXACT filename (case-sensitive) -->
+      <img src="profile.jpg" alt="Professional Portrait" class="profile-pic">
+    </div>
+  
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services container">
+    <h2 class="section-title">What I Offer</h2>
+    <p class="section-subtitle">End-to-end remote services tailored to modern business needs</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fas fa-code service-icon"></i>
+        <h3>Full-Stack Development</h3>
+        <p>Custom website & web application development. Clean, responsive, and optimized from frontend UI to backend architecture.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-language service-icon"></i>
+        <h3>Arabic ↔ English Translation</h3>
+        <p>Accurate, culturally aware translation and localization for business documents, websites, legal texts, and media.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-laptop-house service-icon"></i>
+        <h3>Virtual Assistant</h3>
+        <p>Administrative support, calendar management, email triage, data organization, and workflow automation.</p>
+      </div>      <div class="service-card">
+        <i class="fas fa-headset service-icon"></i>
+        <h3>Tech Support & Call Center</h3>
+        <p>Responsive technical troubleshooting, ticket management, and professional customer service across time zones.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-file-alt service-icon"></i>
+        <h3>Technical Writing</h3>
+        <p>Clear documentation, API guides, user manuals, SOPs, and technical content that bridges knowledge gaps.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-comments-dollar service-icon"></i>
+        <h3>Technical Presales</h3>
+        <p>Client-facing demos, requirement analysis, solution mapping, and proposal drafting to close complex deals.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-microphone-alt service-icon"></i>
+        <h3>Transcription (AR/EN)</h3>
+        <p>Fast, accurate audio/video transcription with bilingual formatting, timestamping, and speaker identification.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-lightbulb service-icon"></i>
+        <h3>Tech Consulting</h3>
+        <p>Strategic advice on tech stacks, digital transformation, cloud migration, and process automation for growth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Signature Section -->
+  <section id="about" class="about">
+    <div class="container about-content">
+      <h2 class="section-title">Who I Am</h2>
+      <p>I’m a <span class="highlight">remote-first professional</span> who thrives at the intersection of technology, communication, and operational efficiency. With deep expertise spanning full-stack engineering, bilingual support, and technical consulting, I help businesses scale without overhead. My approach is systematic, transparent, and results-driven. Whether you need a platform built, documents translated, or your tech stack optimized—I deliver <span class="highlight">precision, reliability, and speed</span>.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact container">
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-subtitle">Ready to streamline your operations? Let’s talk.</p>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! I will respond shortly.');">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <input type="text" placeholder="Subject / Service Needed">
+      <textarea rows="5" placeholder="Tell me about your project, timeline, or specific requirements..." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="whatsapp-wrapper">
+      <a href="https://wa.me/60166745471?text=Hello%2C%20I%27m%20interested%20in%20your%20remote%20services." 
+         target="_blank"          rel="noopener noreferrer" 
+         class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i> Get in Touch on WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Your Name. All rights reserved. | Remote Excellence Delivered.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
